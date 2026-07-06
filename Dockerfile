@@ -1,4 +1,4 @@
-dockerfile FROM node:24-bookworm-slim
+FROM node:24-bookworm-slim
 
 WORKDIR /app
 
