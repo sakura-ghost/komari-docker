@@ -1,0 +1,16 @@
+{
+  "name": "app-runtime",
+  "version": "1.0.0",
+  "description": "Node.js application runtime service",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

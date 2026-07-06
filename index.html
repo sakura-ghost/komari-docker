@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoGuard | 守护生灵与自然家园</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background-color: #f7fafc;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            color: #2d6a4f;
+            font-size: 28px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1b4332;
+        }
+        
+        .logo-text span {
+            color: #52b788;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2d6a4f;
+        }
+        
+        /* 核心按钮（生态绿调） */
+        .cta-button {
+            background-color: #2d6a4f;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        
+        .cta-button:hover {
+            background-color: #1b4332;
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #1b4332;
+            cursor: pointer;
+        }
+        
+        /* 英雄横幅区 */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #f7fafc 100%);
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h1 {
+            font-size: 46px;
+            margin-bottom: 20px;
+            color: #1b4332;
+        }
+        
+        .hero-text h1 span {
+            color: #40916c;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: #4a5568;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: #2d6a4f;
+            border: 2px solid #2d6a4f;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: #e8f5e9;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+        }
+        
+        /* 通用区块标题 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #1b4332;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #718096;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* 核心项目行动区块 */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #edf2f7;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(45, 106, 79, 0.08);
+        }
+        
+        .feature-icon {
+            background-color: #d8f3dc;
+            color: #2d6a4f;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .feature-card p {
+            color: #4a5568;
+        }
+        
+        /* 保护成效与优势区块 */
+        .benefits {
+            padding: 100px 0;
+            background-color: #f2f9f5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .benefit-icon {
+            color: #40916c;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .benefit-item p {
+            color: #4a5568;
+        }
+        
+        /* 守护者见证故事（轮播） */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: #f7fafc;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+            border-left: 4px solid #2d6a4f;
+        }
+        
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #4a5568;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #b7e4c7;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1b4332;
+            font-size: 20px;
+        }
+        
+        .author-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #1b4332;
+        }
+        
+        .author-info p {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        /* 守护与捐助计划 */
+        .pricing {
+            padding: 100px 0;
+            background-color: #f7fafc;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #edf2f7;
+        }
+        
+        .pricing-card.featured {
+            border-top: 5px solid #2d6a4f;
+            transform: scale(1.05);
+            position: relative;
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2d6a4f;
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1b4332;
+        }
+        
+        .plan-price {
+            font-size: 42px;
+            font-weight: 700;
+            color: #2d6a4f;
+            margin-bottom: 20px;
+        }
+        
+        .plan-price span {
+            font-size: 16px;
+            color: #718096;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .plan-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* 呼吁行动 Banner 区域 */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-section .cta-button {
+            background-color: white;
+            color: #2d6a4f;
+            font-size: 16px;
+            padding: 15px 40px;
+        }
+        
+        .cta-section .cta-button:hover {
+            background-color: #e8f5e9;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: #122315;
+            color: #cbd5e0;
+            padding: 70px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 25px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #52b788;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2d6a4f;
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        /* 响应式媒体查询 */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-text h1 {
+                font-size: 34px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 130px 0 80px;
+            }
+            
+            .features, .benefits, .testimonials, .pricing, .cta-section {
+                padding: 60px 0;
+            }
+            
+            .feature-card, .testimonial {
+                padding: 25px;
+            }
+            
+            .plan-price {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon"><i class="fas fa-paw"></i></div>
+                    <div class="logo-text">Eco<span>Guard</span></div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">核心行动</a></li>
+                    <li><a href="#benefits">保护成效</a></li>
+                    <li><a href="#testimonials">前线故事</a></li>
+                    <li><a href="#pricing">守护计划</a></li>
+                    <li><a href="#">科普资源</a></li>
+                </ul>
+                
+                <button class="cta-button">立即参与</button>
+                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>保护野生动物，<span>守护我们共同的地球家园</span></h1>
+                    <p>数万种珍稀物种正面临因栖息地丧失、非法盗猎而引发的灭绝危机。EcoGuard 致力于通过科学观测、实地救援和社区共建，为生命构筑安全的庇风港。</p>
+                    <div class="hero-buttons">
+                        <button class="cta-button">成为志愿者</button>
+                        <button class="secondary-button">观看保护纪实</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="野生动物生态景象">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>我们在行动：全方位的救援生态网络</h2>
+                <p>从森林到海洋，从危机救援到长久繁育，我们用专业的行动为濒危物种争取生命延续的火种。</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tree"></i></div>
+                    <h3>栖息地修复</h3>
+                    <p>恢复并扩大因人类活动受损的自然保护区，种植原生植物，为野生动物搭建生态廊道。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3>反盗猎巡护</h3>
+                    <p>联合当地红外相机红外预警和一线巡护力量，全天候打击非法偷猎行为，拆除致命陷阱。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-first-aid"></i></div>
+                    <h3>野生动物医疗救援</h3>
+                    <p>设立移动兽医站，对受伤、染病或受困的野生动物提供第一时间的专业救治与野化放归。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-dove"></i></div>
+                    <h3>濒危物种繁育</h3>
+                    <p>在严谨的科学谱系指导下，进行极危物种的人工繁育研究，成功后将其逐步引回大自然。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>公众科普教育</h3>
+                    <p>走进校园与社区，开展生物多样性科普活动，切断野生动物非法制品消费链。</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>推动政策立法</h3>
+                    <p>提供实地调研科学数据，积极建言生物多样性法制建设，推动全面禁止非法野生动物交易。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>为什么支持 EcoGuard？</h2>
+                <p>我们坚信每滴汗水和每笔善款都应透明、高效地落实到生态保护的最前线。</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-heart-pulse"></i></div>
+                    <h3>50,000+ 生命获救</h3>
+                    <p>在过去的十年里，已有数万只国家级保护动物在我们的治疗下重新拥抱蓝天与森林。</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-file-shield"></i></div>
+                    <h3>资金 100% 透明</h3>
+                    <p>财务审计向公众完全开放，确保绝大部分捐款直接转换为保护区的防护装备和医疗物资。</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-users-viewfinder"></i></div>
+                    <h3>两万名原住民共建</h3>
+                    <p>引导盗猎高发区的村民参与绿色生态就业，将“猎人”转化为最坚定的“护林人”。</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-chart-line-up"></i></div>
+                    <h3>核心物种种群回升</h3>
+                    <p>监测区域内的关键旗舰物种（如雪豹、亚洲象）的种群密度连续 5 年呈现稳步复苏。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>来自自然最前线的声音</h2>
+                <p>每一个故事都是生命的礼赞，听听守护者与野生动物共同经历的动人瞬间。</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "在反盗猎最艰苦的日子里，是后方成千上万支持者的关注给予了我们力量。当看到那只被捕兽夹所伤的小象经过三个月的治疗重返象群时，所有的汗水和危险都有了答案。"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">张明</div>
+                        <div class="author-info">
+                            <h4>张明</h4>
+                            <div style="font-size: 13px; color:#718096">西双版纳一线巡护队 队长</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>爱心捐助与守护资助计划</h2>
+                <p>您的每一份支持，都将转变为远方森林里一架红外相机的电池、或一杯治愈野生动物的草药。</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3 class="plan-name">萌芽守护者</h3>
+                    <div class="plan-price">￥19<span> / 月</span></div>
+                    <ul class="plan-features">
+                        <li>每月一份电子《全球生态动态简报》</li>
+                        <li>颁发 EcoGuard 电子守护证书</li>
+                        <li>参与年度守护者线上分享会</li>
+                        <li>资金定向用于日常物种宣教活动</li>
+                    </ul>
+                    <button class="secondary-button">开启定期守护</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="featured-badge">主流推介</div>
+                    <h3 class="plan-name">森林捍卫者</h3>
+                    <div class="plan-price">￥59<span> / 月</span></div>
+                    <ul class="plan-features">
+                        <li>涵盖“萌芽守护者”所有权益</li>
+                        <li>**专属结对认领** 一只受助野生动物</li>
+                        <li>每季度获取专属结对物种的健康与红外视频影像</li>
+                        <li>获赠定制环保金属守护徽章一套</li>
+                        <li>享有国家级自然保护区实地探访优先权</li>
+                    </ul>
+                    <button class="cta-button">立即加入计划</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="plan-name">生态终身伙伴</h3>
+                    <div class="plan-price">个性化定制</div>
+                    <ul class="plan-features">
+                        <li>适合企业 CSR 责任项目、或个人大额捐赠</li>
+                        <li>独家冠名区域性珍稀物种野外红外监测点</li>
+                        <li>专属定制的大型栖息地修复或反盗猎专项行动</li>
+                        <li>提供 24/7 专人对接报告及税收减免凭证</li>
+                        <li>受邀随同科学家深入无人区参与深度科学考察</li>
+                    </ul>
+                    <button class="secondary-button">联系项目代表</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>每一个生命，都渴望自由地呼吸</h2>
+            <p>不要让我们的后代，只能在纪录片和标本馆里去凝视这些美丽的生灵。加入 EcoGuard，此时此刻，用行动改写它们的命运。</p>
+            <button class="cta-button">立即参与单笔捐款</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="logo">
+                        <div class="logo-icon" style="color: #52b788;"><i class="fas fa-paw"></i></div>
+                        <div class="logo-text" style="color: white;">Eco<span>Guard</span></div>
+                    </div>
+                    <p style="margin-top: 20px; color: #a0aec0;">作为一家透明高效的国际化野生动物保护平台，我们不懈探索人类与自然界和谐共生的科学路径。</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>关注项目</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">栖息地网络</a></li>
+                        <li><a href="#">反盗猎足迹</a></li>
+                        <li><a href="#">极危繁育进展</a></li>
+                        <li><a href="#">财务公开年报</a></li>
+                        <li><a href="#">科学顾问团</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>学习资源</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">野生动物救助指南</a></li>
+                        <li><a href="#">生物多样性白皮书</a></li>
+                        <li><a href="#">生态摄影廊</a></li>
+                        <li><a href="#">志愿者线上学堂</a></li>
+                        <li><a href="#">联络有线举报</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>关于机构</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">了解我们</a></li>
+                        <li><a href="#">加入前线团队</a></li>
+                        <li><a href="#">媒体素材包</a></li>
+                        <li><a href="#">隐私权与数据安全</a></li>
+                        <li><a href="#">服务条款</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 EcoGuard 生态守护基金会. 本平台所有摄影图已获公益授权. 保留一切权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 手机端菜单展开折叠
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            
+            if (window.innerWidth <= 768) {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '75px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.08)';
+                    
+                    const navItems = document.querySelectorAll('.nav-links li');
+                    navItems.forEach(item => {
+                        item.style.margin = '10px 0';
+                    });
+                }
+            }
+        });
+        
+        // 锚点平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 75,
+                        behavior: 'smooth'
+                    });
+                    
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // 前线故事（原评价模块）多数据自动轮播
+        const stories = [
+            {
+                text: "在反盗猎最艰苦的日子里，是后方成千上万支持者的关注给予了我们力量。当看到那只被捕兽夹所伤的小象经过三个月的治疗重返象群时，所有的汗水和危险都有了答案。",
+                name: "张明",
+                position: "西双版纳一线巡护队 队长",
+                initials: "张明"
+            },
+            {
+                text: "科学观测不仅需要热血，更需要精密的定量分析。通过部署 EcoGuard 智能红外相机的分析算法，我们对大熊猫廊道的预测准确度提升了70%，保护工作迈入智能数字化时代。",
+                name: "陈博士",
+                position: "濒危物种研究所 高级研究员",
+                initials: "陈博"
+            },
+            {
+                text: "作为一名城市里的普通教师，参与‘每月定额资助计划’让我觉得自己正跨越山海，跟这颗星球上最壮丽的生命产生紧密的羁绊。孩子们也很期待看到我认养的小雪豹的最新简报！",
+                name: "王芳",
+                position: "长期荣誉捐助人 / 小学教师",
+                initials: "王芳"
+            }
+        ];
+        
+        let currentStory = 0;
+        const testimonialElement = document.querySelector('.testimonial');
+        
+        function rotateStory() {
+            currentStory = (currentStory + 1) % stories.length;
+            updateStory();
+        }
+        
+        function updateStory() {
+            const story = stories[currentStory];
+            testimonialElement.innerHTML = `
+                <div class="testimonial-text">"${story.text}"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">${story.initials}</div>
+                    <div class="author-info">
+                        <h4>${story.name}</h4>
+                        <p>${story.position}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // 每 5 秒轮播一次见证故事
+        setInterval(rotateStory, 5000);
+        
+        // 核心行动按钮交互
+        document.querySelectorAll('.cta-button, .cta-section .cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                if(!this.closest('nav')) { // 避免导航栏按钮和普通按钮事件冲突
+                     alert('感谢您对生态保护事业的倾心关注！实际运行时，这里会安全重定向到我们的民政备案爱心捐赠或志愿者申请表单页面。');
+                }
+            });
+        });
+        
+        // 资助计划卡片按钮交互
+        document.querySelectorAll('.pricing-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
+                alert(`您已锁定并选择：【${planName}】。非常感谢您的善举，在真实部署时系统将引导您跳转至安全的公益通道完成签约绑定。`);
+            });
+        });
+    </script>
+</body>
+</html>
